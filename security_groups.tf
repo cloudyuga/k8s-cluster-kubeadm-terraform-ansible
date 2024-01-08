@@ -58,6 +58,8 @@ resource "aws_security_group" "k8s_master" {
   tags = {
     Name = "k8s_master_sg"
   }
+<<<<<<< HEAD
+=======
 }
 
 resource "aws_security_group" "k8s_worker" {
@@ -103,4 +105,5 @@ resource "aws_security_group" "k8s_worker" {
   tags = {
     Name = "k8s_worker_sg"
   }
+>>>>>>> 456cddac11ca2cb947317261adb90f308161ae70
 }

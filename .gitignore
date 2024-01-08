@@ -3,5 +3,9 @@ k8s
 k8s.pub
 terraform.tfstate
 terraform.tfstate.backup
+<<<<<<< HEAD
+.terraform/
+=======
 .terraform/
 join-command.sh
+>>>>>>> 456cddac11ca2cb947317261adb90f308161ae70

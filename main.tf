@@ -15,6 +15,10 @@ resource "aws_instance" "k8s_master" {
     host        = self.public_ip
   }
   provisioner "file" {
+    source      = "./deploy.yaml"
+    destination = "/home/ubuntu/deploy.yaml"
+  }
+  provisioner "file" {
     source      = "./master.sh"
     destination = "/home/ubuntu/master.sh"
   }
@@ -24,6 +28,7 @@ resource "aws_instance" "k8s_master" {
       "sudo sh /home/ubuntu/master.sh k8s-master"
     ]
   }
+  
   provisioner "local-exec" {
     command = "ansible-playbook -i '${self.public_ip},' playbook.yaml"
   }
