@@ -71,5 +71,8 @@ echo "-------------Deploying Cilium-------------"
 helm repo add cilium https://helm.cilium.io/
 helm install cilium cilium/cilium --version 1.14.5 --namespace kube-system
 
+echo "------------Remove taints and tolerations----"
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+
 echo "-------------Creating Storage Class-------------"
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.26/deploy/local-path-storage.yaml
