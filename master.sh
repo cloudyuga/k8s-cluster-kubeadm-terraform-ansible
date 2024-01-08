@@ -79,6 +79,3 @@ kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisione
 
 echo "-------------Creating file with join command-------------"
 echo `kubeadm token create --print-join-command` > ./join-command.sh
-
-
-
