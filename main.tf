@@ -14,7 +14,7 @@ resource "aws_instance" "k8s_master" {
     private_key = file("k8s")
     host        = self.public_ip
   }
-  
+
   provisioner "file" {
     source      = "./master.sh"
     destination = "/home/ubuntu/master.sh"
@@ -65,3 +65,4 @@ resource "aws_instance" "k8s_worker" {
   }
 
 }
+
