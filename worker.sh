@@ -47,32 +47,3 @@ sudo systemctl enable containerd
 
 echo "-------------Printing Kubeadm version-------------"
 kubeadm version
-
-echo "-------------Pulling Kubeadm Images -------------"
-kubeadm config images pull
-
-echo "-------------Running kubeadm init-------------"
-kubeadm init
-
-echo "-------------Copying Kubeconfig-------------"
-mkdir -p /root/.kube
-cp -iv /etc/kubernetes/admin.conf /root/.kube/config
-sudo chown $(id -u):$(id -g) /root/.kube/config
-
-echo "-------------Exporting Kubeconfig-------------"
-export KUBECONFIG=/etc/kubernetes/admin.conf
-
-echo "----------------- Installing Helm-------------"
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
-
-echo "-------------Deploying Cilium-------------"
-helm repo add cilium https://helm.cilium.io/
-helm install cilium cilium/cilium --version 1.14.5 --namespace kube-system
-
-echo "------------Remove taints and tolerations----"
-kubectl taint nodes --all node-role.kubernetes.io/control-plane-
-
-echo "-------------Creating file with join command-------------"
-echo `kubeadm token create --print-join-command` > ./join-command.sh
