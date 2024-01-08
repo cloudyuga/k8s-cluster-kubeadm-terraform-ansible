@@ -20,5 +20,5 @@ variable "instance_type" {
 
 variable "worker_instance_count" {
   type    = number
-  default = 1
+  default = 0   # increase this if worker needs to be created
 }
