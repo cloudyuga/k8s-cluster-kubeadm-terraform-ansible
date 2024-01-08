@@ -70,3 +70,6 @@ chmod 700 get_helm.sh
 echo "-------------Deploying Cilium-------------"
 helm repo add cilium https://helm.cilium.io/
 helm install cilium cilium/cilium --version 1.14.5 --namespace kube-system
+
+echo "------------Remove taints and tolerations----"
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
