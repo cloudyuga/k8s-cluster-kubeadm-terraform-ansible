@@ -1,0 +1,6 @@
+.terraform.lock.hcl
+k8s
+k8s.pub
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
