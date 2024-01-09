@@ -52,6 +52,7 @@ terraform version
 
 ## Clone the GitHub Repository and Spin up EC2 Instances
 - Clone this GitHub repository; if you want to clone a specific branch, then use `-b <branch-name>` with below command
+With this , we will spin up Kubeadm Kubernetes cluster with local-path storage class and nginx ingress controller.
 ```
 git clone https://github.com/cloudyuga/k8s-cluster-kubeadm-terraform-ansible.git -b single-master-sc-ingress
 cd k8s-cluster-kubeadm-terraform-ansible
@@ -99,10 +100,15 @@ sudo su
 ```
 kubectl get nodes
 ```
+![k8s-terraform-node](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/9d74ed3e-ce5f-4630-b479-c61b753fbe80)
+
 - Verify the Storage class and Nginx Ingress controller pods are running along with other pods
 ```
 kubectl get pods -A
-```   
+```
+![ingress-nginx-k8s-pods](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/fba12c3a-7323-4fda-81c6-d01bb7acb347)
+![ingress-nginx-terraform-cluster](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/49eec303-816e-43b5-9661-5086292fdc20)
+
 
 ## Destroy the setup
 - Come out of the AWS EC2 instance and run the following command on your host system.
