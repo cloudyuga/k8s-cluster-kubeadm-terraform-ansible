@@ -102,8 +102,25 @@ kubectl get nodes
 - Verify all the pods are running in the cluster.
 ```
 kubectl get pods -A
-```   
+```
+## Destroy the setup
+- Come out of the AWS EC2 instance and run the following command on your host system.
+```
+terraform destroy
+```
+This will remove the AWS EC2 instances , VPC, security groups that have been created by terraform.Verify the removal of them in your AWS console.This is important because if not removed , AWS will charge based on the usage of the AWS services.
 
+NOTE: If you want to have storage class or Nginx Ingress controller in the Kubernetes cluster then follow the below steps:
+- List the branches and switch to the desired branch.
+```
+git branch -a
+git checkout <branch-name>
+```
+- Again run the `terraform apply` command.
+```
+terraform apply -auto-approve
+```
+This will update and install the requirements.
 
 
 
