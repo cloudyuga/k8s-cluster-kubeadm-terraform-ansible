@@ -51,7 +51,8 @@ terraform version
 ```
 
 ## Clone the GitHub Repository and Spin up EC2 Instances
-- Clone this GitHub repository; if you want to clone a specific branch, then use `-b <branch-name>` with below command
+- Clone this GitHub repository; if you want to clone a specific branch, then use `-b <branch-name>` with below command.
+With this spin up the Kubeadm Kubernetes cluster with Cilium CNI.
 ```
 git clone https://github.com/cloudyuga/k8s-cluster-kubeadm-terraform-ansible.git -b single-master
 cd k8s-cluster-kubeadm-terraform-ansible
@@ -99,10 +100,15 @@ sudo su
 ```
 kubectl get nodes
 ```
-- Verify all the pods are running in the cluster.
+![k8s-terraform-node](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/7e79c379-a612-42dc-851e-05871e16e95b)
+
+- Verify all the pods are running in the cluster along with Cilium CNI.
 ```
 kubectl get pods -A
 ```
+![pods-k8s-terraform](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/37496c23-0e76-4ccf-8577-523732591af9)
+
+
 ## Destroy the setup
 - Come out of the AWS EC2 instance and run the following command on your host system.
 ```
