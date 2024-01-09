@@ -12,9 +12,32 @@ This repository contains Terraform and Ansible scripts to set up Kubeadm-based K
 sudo apt install python3-pip -y
 sudo pip install awscli
 ```
-- Run the following command to connect to your AWS account from your Terminal.
+- Verify the installation
+```
+   aws --version
+```
+- Generate AWS Access Key and Secret Key, which will be used in the next step. Follow [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user_manage_add-key.html) to learn how to generate them.
+- Run the following command to connect to your AWS account from your terminal and pass the access and secret keys, respectively.
 ```
 aws configure
 ```
+
+### Install Ansible
+- Run the following commands to install Ansible for ubuntu-based system.
+```
+sudo apt update
+sudo apt install software-properties-common -y
+
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update && sudo apt install ansible -y
+```
+- Verify the Ansible installation
+```
+ansible --version
+```
+
+
+
+
 
 
