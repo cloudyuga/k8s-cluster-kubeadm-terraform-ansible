@@ -99,8 +99,10 @@ sudo su
 ```
 kubectl get nodes
 ```
-  
-
+- Verify all the pods are running in the cluster.
+```
+kubectl get pods -A
+```   
 
 
 
