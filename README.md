@@ -52,6 +52,7 @@ terraform version
 
 ## Clone the GitHub Repository and Spin up EC2 Instances
 - Clone this GitHub repository; if you want to clone a specific branch, then use `-b <branch-name>` with below command
+With this spin up Kubeadm Kubernetes cluster with local-path storage class. 
 ```
 git clone https://github.com/cloudyuga/k8s-cluster-kubeadm-terraform-ansible.git -b single-master-sc
 cd k8s-cluster-kubeadm-terraform-ansible
@@ -99,10 +100,19 @@ sudo su
 ```
 kubectl get nodes
 ```
+![k8s-terraform-node](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/eb0e5bde-177a-483c-94ff-de2571060a24)
+
 - Verify the Storage class pods are running along with other pods
 ```
 kubectl get pods -A
 ```   
+![sc-k8s-pods](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/6c0619aa-6c93-4d06-9a77-b18bccadbc3e)
+![sc-class-terraform-cluster](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/3a6fd897-93e8-4131-85fc-dae9bd2ca8fb)
+
+- Also, check the storage class by running
+```
+kubectl get sc
+```
 
 ## Destroy the setup
 - Come out of the AWS EC2 instance and run the following command on your host system.
