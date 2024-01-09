@@ -23,7 +23,7 @@ aws configure
 ```
 
 ### Install Ansible
-- Run the following commands to install Ansible for ubuntu-based system.
+- Run the following commands to install Ansible for Ubuntu-based system.
 ```
 sudo apt update
 sudo apt install software-properties-common -y
@@ -31,12 +31,24 @@ sudo apt install software-properties-common -y
 sudo apt-add-repository ppa:ansible/ansible
 sudo apt update && sudo apt install ansible -y
 ```
-- Verify the Ansible installation
+- Verify the Ansible installation.
 ```
 ansible --version
 ```
+### Install Terraform
+- Install Terraform on Ubuntu-based system.
+```
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
 
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 
+sudo apt update
+sudo apt install terraform -y
+```
+- Verify the Terraform installation.
+```
+terraform version
+```
 
 
 
