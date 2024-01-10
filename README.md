@@ -61,8 +61,30 @@ cd k8s-cluster-kubeadm-terraform-ansible
 ```
 ssh-keygen -f k8s
 ```
-- By default the cluster will only have a single master node, but if you want to add worker nodes, then change the worker node count in the `variables.tf` file as shown below
+
+- By default, the cluster will only have a single master node, but if you want to add worker nodes, then change the worker node count in the variables.tf file. Also edit the same variables.tf file if you wish to change the AWS region, master and worker EC2 instances type. The EC2 instances are Ubuntu distributions. If you wish to change the region or EC2 instances OS type, change the ami as well.
+
 ```
+variable "region" {
+  default = "us-east-1"
+}
+
+variable "ami" {
+  type = map(string)
+  default = {
+    master = "ami-00d8834ea9c9ecd09"
+    worker = "ami-00d8834ea9c9ecd09"
+  }
+}
+
+variable "instance_type" {
+  type = map(string)
+  default = {
+    master = "t2.medium"
+    worker = "t2.micro"
+  }
+}
+
 variable "worker_instance_count" {
   type    = number
   default = 0   # increase this , if worker node in cluster needs to be created
@@ -109,7 +131,23 @@ kubectl get pods -A
 ![ingress-nginx-k8s-pods](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/fba12c3a-7323-4fda-81c6-d01bb7acb347)
 ![ingress-nginx-terraform-cluster](https://github.com/oshi36/k8s-cluster-kubeadm-terraform-ansible/assets/47573417/49eec303-816e-43b5-9661-5086292fdc20)
 
-
+- As we have deployed Nginx ingress controller with `deploy.yaml` file , we have tweaked the ingress controller settings a liitle bit. We have added `hostNetwork: true` in the Ingress Controller Deployment which will enable ingress controller shares the same IP address of the host system. It means that if one accesses the IP address of the cluster node on port 80/443, then one can reach the Ingress Controller.
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+....
+....
+    spec:
+      hostNetwork: true
+      containers:
+      - args:
+        - /nginx-ingress-controller
+        - --election-id=ingress-nginx-leader
+....
+```
 ## Destroy the setup
 - Come out of the AWS EC2 instance and run the following command on your host system.
 ```
