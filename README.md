@@ -61,8 +61,28 @@ cd k8s-cluster-kubeadm-terraform-ansible
 ```
 ssh-keygen -f k8s
 ```
-- By default the cluster will only have a single master node, but if you want to add worker nodes, then change the worker node count in the `variables.tf` file as shown below
+- By default, the cluster will only have a single master node, but if you want to add worker nodes, then change the worker node count in the variables.tf file. Also edit the same variables.tf file if you wish to change the AWS region, master and worker EC2 instances type. The EC2 instances are Ubuntu distributions. If you wish to change the region or EC2 instances OS type, change the ami as well.
 ```
+variable "region" {
+  default = "us-east-1"
+}
+
+variable "ami" {
+  type = map(string)
+  default = {
+    master = "ami-00d8834ea9c9ecd09"
+    worker = "ami-00d8834ea9c9ecd09"
+  }
+}
+
+variable "instance_type" {
+  type = map(string)
+  default = {
+    master = "t2.medium"
+    worker = "t2.micro"
+  }
+}
+
 variable "worker_instance_count" {
   type    = number
   default = 0   # increase this , if worker node in cluster needs to be created
